@@ -85,7 +85,11 @@ public class UiBuilder {
                 .getFlutterAssets()
                 .getAssetFilePathBySubpath("assets/"+buttonText.getText()+".png", "system_alert_window");
             Drawable d = Drawable.createFromStream(SystemAlertWindowPlugin.binding.getApplicationContext().getAssets().open(assetPath), null);
-            button.setCompoundDrawablesWithIntrinsicBounds(null,wrappedDrawable,null,null);
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                button.setCompoundDrawableTintList(buttonText.getTextColors());
+            }
+            button.setCompoundDrawablesWithIntrinsicBounds(null,d,null,null);
         }
         catch(IOException e) {
             button.setText(buttonText.getText());
