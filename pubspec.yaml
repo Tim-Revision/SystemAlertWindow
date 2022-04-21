@@ -25,6 +25,8 @@ flutter:
   # The androidPackage and pluginClass identifiers should not ordinarily
   # be modified. They are used by the tooling to maintain consistency when
   # adding or updating assets for this project.
+  assets:
+    - assets/
   plugin:
     platforms:
       android:
@@ -33,6 +35,7 @@ flutter:
       ios:
         package: in.jvapps.system_alert_window
         pluginClass: SystemAlertWindowPlugin
+
 
   # To add assets to your plugin package, add an assets section, like this:
   # assets:

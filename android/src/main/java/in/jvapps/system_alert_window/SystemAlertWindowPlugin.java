@@ -48,6 +48,9 @@ import io.flutter.plugin.common.MethodChannel.MethodCallHandler;
 import io.flutter.plugin.common.MethodChannel.Result;
 import io.flutter.plugin.common.PluginRegistry.Registrar;
 import io.flutter.view.FlutterCallbackInformation;
+import io.flutter.embedding.engine.plugins.FlutterPlugin.FlutterPluginBinding;
+
+
 
 public class SystemAlertWindowPlugin extends Activity implements FlutterPlugin, ActivityAware, MethodCallHandler {
 
@@ -55,6 +58,8 @@ public class SystemAlertWindowPlugin extends Activity implements FlutterPlugin, 
     private Context mContext;
     private Activity mActivity;
     public AtomicBoolean sIsIsolateRunning = new AtomicBoolean(false);
+
+    public static FlutterPluginBinding binding;
 
     private MethodChannel methodChannel;
     private MethodChannel backgroundChannel;
@@ -101,6 +106,7 @@ public class SystemAlertWindowPlugin extends Activity implements FlutterPlugin, 
 
     @Override
     public void onAttachedToEngine(@NonNull FlutterPluginBinding flutterPluginBinding) {
+        binding = flutterPluginBinding;
         this.mContext = flutterPluginBinding.getApplicationContext();
         LogUtils.getInstance().setContext(this.mContext);
         this.methodChannel = new MethodChannel(flutterPluginBinding.getBinaryMessenger(), CHANNEL, JSONMethodCodec.INSTANCE);

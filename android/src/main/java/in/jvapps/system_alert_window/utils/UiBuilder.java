@@ -8,8 +8,13 @@ import android.util.TypedValue;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
+import android.graphics.drawable.Drawable;
+import java.io.InputStream;
+import java.io.IOException;
+import android.graphics.BlendMode;
+import android.graphics.BlendModeColorFilter;
 import java.util.Map;
+import android.graphics.drawable.Drawable;
 
 import in.jvapps.system_alert_window.SystemAlertWindowPlugin;
 import in.jvapps.system_alert_window.models.Decoration;
@@ -75,7 +80,18 @@ public class UiBuilder {
         Button button = new Button(context);
         TextView buttonText = getTextView(context, Commons.getMapFromObject(buttonMap, Constants.KEY_TEXT));
         assert buttonText != null;
-        button.setText(buttonText.getText());
+        try {
+            String assetPath = SystemAlertWindowPlugin.binding
+                .getFlutterAssets()
+                .getAssetFilePathBySubpath("assets/"+buttonText.getText()+".png", "system_alert_window");
+            Drawable d = Drawable.createFromStream(SystemAlertWindowPlugin.binding.getApplicationContext().getAssets().open(assetPath), null);
+            button.setCompoundDrawablesWithIntrinsicBounds(null,wrappedDrawable,null,null);
+        }
+        catch(IOException e) {
+            button.setText(buttonText.getText());
+        }
+
+
         final Object tag = buttonMap.get(Constants.KEY_TAG);
         button.setTag(tag);
         button.setTextSize(Commons.getSpFromPixels(context, buttonText.getTextSize()));

@@ -178,7 +178,7 @@ public class WindowServiceNew extends Service implements View.OnTouchListener {
             windowView.setId(WINDOW_VIEW_ID);
         }
         windowView.setOrientation(LinearLayout.VERTICAL);
-        windowView.setBackgroundColor(Color.WHITE);
+        windowView.setBackgroundColor(Color.TRANSPARENT);
         windowView.setLayoutParams(params);
         windowView.removeAllViews();
         windowView.addView(headerView);

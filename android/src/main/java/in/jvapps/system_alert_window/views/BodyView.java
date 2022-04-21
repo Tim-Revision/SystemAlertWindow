@@ -41,7 +41,7 @@ public class BodyView {
             GradientDrawable gd = uiBuilder.getGradientDrawable(decoration);
             linearLayout.setBackground(gd);
         }else{
-            linearLayout.setBackgroundColor(Color.WHITE);
+            linearLayout.setBackgroundColor(Color.TRANSPARENT);
         }
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT);
